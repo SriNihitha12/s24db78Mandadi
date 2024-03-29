@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Hello,This is Sri Nihitha Mandadi 
+  button(type="button", class="btn btn-primary", onclick="double()") I am a button
+  div(id="double") Up the amount
+  script.
+    var value = 0;
+    var power = 1;
+    function double(){
+        value++;
+        power *= 2;
+        var result = `Two to the power ${value} is ${power}`;
+        document.getElementById('double').innerText = result;
+    }
