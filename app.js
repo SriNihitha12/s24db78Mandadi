@@ -29,6 +29,22 @@ async function recreateDB(){
   ).catch(err=>{
   console.error(err)
   });
+  let instance2 = new
+  Hillstation({location:"Darjeeling",name:'West Bengal',
+  maxtemperature:20});
+  instance2.save().then(doc=>{
+  console.log("Second object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+  let instance3 = new
+  Hillstation({location:"Ooty",name:'Tamil Nadu',
+  maxtemperature:22});
+  instance3.save().then(doc=>{
+  console.log("Third object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
  }
  let reseed = true;
  if (reseed) {recreateDB();}
