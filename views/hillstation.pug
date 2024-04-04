@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - let hillStations = [{ location: "Shimla", name: "Himachal Pradesh", maxtemperature: 25 },{ location: "Darjeeling", name: "West Bengal", maxtemperature: 20 },{ location: "Ooty", name: "Tamil Nadu", maxtemperature: 22 }]
+  - let hillStations= results 
   div(class="container-fluid")
   div(class="row")
     each station, index in hillStations  
