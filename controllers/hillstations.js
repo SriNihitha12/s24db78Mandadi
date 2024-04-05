@@ -5,11 +5,14 @@ exports.hillstations_list = function(req, res) {
 };
 // for a specific hillstations.
 exports.hillstations_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
     try {
-        const hillstations = await hillstations.findById(req.params.id);
-        res.render('hillstation', { title: 'hillstations Details', hillstations: hillstations });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    result = await hillstations.findById( req.params.id).exec()
+    console.log(result);
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
     }
 };
 // Handle hillstations create on POST.
@@ -44,11 +47,20 @@ exports.hillstations_delete = async function(req, res) {
 };
 // Handle hillstations update form on PUT.
 exports.hillstations_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
     try {
-        await hillstations.findByIdAndUpdate(req.params.id, req.body);
-        res.json({ message: 'hillstations item updated successfully' });
+        let toUpdate = await hillstations.findById( req.params.id).exec()
+        // Do updates of properties
+        if(req.body.material_type) toUpdate.location = req.body.location;
+        if(req.body.name) toUpdate.name = req.body.name;
+        if(req.body.maxtemperature) toUpdate.maxtemperature = req.body.maxtemperature;
+        let result = await toUpdate.save()  ;
+        console.log("Sucess " + result)
+        res.send(result)
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
+        failed`);
     }
 };
  

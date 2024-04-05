@@ -17,6 +17,6 @@ router.put('/hillstations/:id', hillstation_controller.hillstations_update_put);
 router.get('/hillstations/:id', hillstation_controller.hillstations_detail);
 // GET request for list of all hillstation items.
 router.get('/hillstations', hillstation_controller.hillstations_list);
- 
+router.get('/hillstations/:id',hillstation_controller.hillstations_detail);
  
 module.exports = router;
