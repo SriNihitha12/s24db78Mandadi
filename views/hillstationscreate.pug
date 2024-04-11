@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  form(id='hillstationsForm', action="/resource/hillstations", method="POST")
+    div.form-group(style="color: black; background-color: orange")
+      label.hillstationsAttr(for='hillstationslocation') hillstations location 
+      input#hillstationslocation(type='text', name='hillstationslocation')
+    div.form-group(style="color: black; background-color:orange")
+      label.hillstationsAttr(for='name') hillstations name
+      input#name(type='text', name='name')
+    div.form-group(style="color: black; background-color: orange")
+      label.hillstationsAttr(for='maxtemperature') hillstations maxtemperature
+      input#maxtemperature(type='number', name='maxtemperature')
+    input(type="submit")(style="color:blue; background-color: black")
+  script.
+    document.forms['hillstationsForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeeded");
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed: " + error);
+      });
+    });

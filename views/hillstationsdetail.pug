@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  if (toShow == null)
+      h2 No instance to detail
+  else
+  - let hillstationsid = toShow._id
+  - let hillstationslocation = toShow.location
+  - let hillstationsname = toShow.name
+  - let hillstationsmaxtemperature = toShow.maxtemperature
+  
+  div
+    div.row
+      div(class='hillstationsAttr mr-3') hillstations ID is:
+      div #{hillstationsid}
+    div.row
+      div(class='hillstationsAttr mr-3') hillstations location is:
+      div #{hillstationslocation}
+    div.row
+      div(class='hillstationsAttr mr-3') hillstations name is:
+      div #{hillstationsname}
+    div.row
+      div(class='hillstationsAttr mr-3') hillstations maxtemperature is:
+      div #{hillstationsmaxtemperature}
