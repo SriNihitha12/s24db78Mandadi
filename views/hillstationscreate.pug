@@ -3,16 +3,16 @@ extends layout
 block content
   h1= title
   form(id='hillstationsForm', action="/resource/hillstations", method="POST")
-    div.form-group(style="color: black; background-color: orange")
+    div.form-group(style="color: #1a1a2e; background-color: #add8e6")
       label.hillstationsAttr(for='hillstationslocation') hillstations location 
       input#hillstationslocation(type='text', name='hillstationslocation')
-    div.form-group(style="color: black; background-color:orange")
+    div.form-group(style="color: #1a1a2e; background-color: #add8e6")
       label.hillstationsAttr(for='name') hillstations name
       input#name(type='text', name='name')
-    div.form-group(style="color: black; background-color: orange")
+    div.form-group(style="color: #1a1a2e; background-color: #add8e6")
       label.hillstationsAttr(for='maxtemperature') hillstations maxtemperature
       input#maxtemperature(type='number', name='maxtemperature')
-    input(type="submit")(style="color:blue; background-color: black")
+    input(type="submit")(style="color: #1a1a2e; background-color: #add8e6")
   script.
     document.forms['hillstationsForm'].addEventListener('submit', (event) => {
       event.preventDefault();
