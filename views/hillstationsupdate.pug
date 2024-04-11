@@ -2,7 +2,6 @@ extends layout
 
 block content
   h1= title
-  h1= title
   if (toShow == null)
       h2 No instance to detail
   else
@@ -12,19 +11,20 @@ block content
   - let hillstationmaxtemperature = toShow.maxtemperature
   div.row(class='mb-2')
     div.mr-1 ID is
-    div #{costumeid}
+    div #{hillstationid}
   - let actionid = "/resource/hillstations/" + hillstationid
-  form(id='hillstationsForm', action= actionid, method="PUT")
-    div.form-group
-      label.hillstationsAttr(for='location') hillstations location
-      input#location(type='text', name='location', value= hillstation_location )
-    div.form-group
-      label.hillstationsAttr(for='name') hillstations name
-      input#name(type='text', name='name', value= hillstationname )
-    div.form-group
-      label.hillstationsAttr(for='maxtemperature') hillstation maxtemperature 
-      input#maxtemperature(type='number', name='maxtemperature', value= hillstationmaxtemperature )
-    input(type="submit")
+  div(style="display:flex; justify-content:center;")
+    form(id='hillstationsForm', action= actionid, method="PUT",style="display: flex; flex-direction: column; border-radius: 20px; padding: 20px; width: 50%; max-width: 400px; background-color: #f9f9f9; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);")
+      div.form-group
+        label.hillstationsAttr(for='location') hillstations location
+        input#location(type='text', name='location', value= hillstation_location )
+      div.form-group
+        label.hillstationsAttr(for='name') hillstations name
+        input#name(type='text', name='name', value= hillstationname )
+      div.form-group
+        label.hillstationsAttr(for='maxtemperature') hillstation maxtemperature 
+        input#maxtemperature(type='number', name='maxtemperature', value= hillstationmaxtemperature )
+      input(type="submit")
   script.
     document.forms['hillstationsForm'].addEventListener('submit', (event) => {
       event.preventDefault();
