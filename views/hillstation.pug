@@ -4,12 +4,16 @@ block content
   h1= title
   - let hillStations= results 
   div(class="container-fluid")
-  div(class="row")
-    each station, index in hillStations  
+  div(class="row m-1")
+    each station, index in hillStations 
+      - let destination = `dispatch(\"/hillstations/update?id=${station._id}\")` 
       div(class="col-sm-2", onclick=`buy(${index})`)
         p #{station.name}
         p #{station.location}
         p Max Temperature: #{station.maxtemperature}°C
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
   script.
-    function buy(index) {
-    alert("You purchased item " + index);}
+    function dispatch(path){
+    window.location.href=path
+    }
+
