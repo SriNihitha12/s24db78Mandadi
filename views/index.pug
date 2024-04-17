@@ -1,16 +1,12 @@
 extends layout
-
+ 
 block content
-  h1= title
-  p Hello,This is Sri Nihitha Mandadi 
-  button(type="button", class="btn btn-primary", onclick="double()") I am a button
-  div(id="double") Up the amount
-  script.
-    var value = 0;
-    var power = 1;
-    function double(){
-        value++;
-        power *= 2;
-        var result = `Two to the power ${value} is ${power}`;
-        document.getElementById('double').innerText = result;
-    }
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/hillstations") Take me to hillstations
+    br
+    a(href="/logout") Logout

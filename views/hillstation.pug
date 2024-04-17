@@ -2,16 +2,24 @@ extends layout
 
 block content
   h1= title
+  p Welcome to #{title}
+  - let create = `dispatch("/hillstations/create")`
+  button.btn(class="btn-primary ml-1", onclick=create) Create
   - let hillStations= results 
   div(class="container-fluid")
   div(class="row m-1")
     each station, index in hillStations 
       - let destination = `dispatch(\"/hillstations/update?id=${station._id}\")` 
-      div(class="col-sm-2", onclick=`buy(${index})`)
+      - let detail = `dispatch("/hillstations/detail?id=${station._id}")`
+      - let remove = `dispatch("/hillstations/delete?id=${station._id }")`
+
+      div(class="col", onclick=`buy(${index})`)
         p #{station.name}
         p #{station.location}
         p Max Temperature: #{station.maxtemperature}°C
         button.btn( class="btn-primary ml-1", onclick= destination) Update
+        button.btn(class="btn-success ml-1", onclick=detail) Detail
+        button.btn(class="btn-danger ml-1", onclick=remove) Delete
   script.
     function dispatch(path){
     window.location.href=path
